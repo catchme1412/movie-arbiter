@@ -1,5 +1,7 @@
 
 [
-  { "albumId": 1, "id": 1, "title": "Nadodikattu", "url": "https://madaboutmoviez.files.wordpress.com/2014/12/nadodikattu-poster.jpg", "thumbnailUrl": "https://madaboutmoviez.files.wordpress.com/2014/12/nadodikattu-poster.jpg" }
+  { "albumId": 1, "id": 1, "title": "Nadodikattu", "url": "https://madaboutmoviez.files.wordpress.com/2014/12/nadodikattu-poster.jpg", "thumbnailUrl": "https://madaboutmoviez.files.wordpress.com/2014/12/nadodikattu-poster.jpg" },
+   { "albumId": 2, "id": 2, "title": "Nadodikattu", "url": "https://madaboutmoviez.files.wordpress.com/2014/12/nadodikattu-poster.jpg", "thumbnailUrl": "https://madaboutmoviez.files.wordpress.com/2014/12/nadodikattu-poster.jpg" }
   
-  ]
+  
+]
