@@ -2,16 +2,42 @@
    {
       "albumId":1,
       "id":1,
-      "title":"Nadodikattu",
-      "url":"https://www.youtube.com/watch?v=6ftMfLhro3E",
-      "thumbnailUrl":"https://madaboutmoviez.files.wordpress.com/2014/12/nadodikattu-poster.jpg"
+      "title":"Iblis",
+      "url":"https://www.youtube.com/watch?v=NDzujNSBHB8",
+      "thumbnailUrl":"https://images.desimartini.com/media/main/original/2018-7/mobile_0af515e2-76bf-4e57-bb63-ec0552c4d712.jpg"
    
 },
    {
       "albumId":2,
       "id":2,
+      "title":"Sukhamano Daveede",
+      "url":"https://www.youtube.com/watch?v=qPR5uEeHkYs",
+      "thumbnailUrl":"https://images.pycker.com/topic/jTPT/1519027616924"
+   
+}
+,
+   {
+      "albumId":2,
+      "id":2,
+      "title":"Luca",
+      "url":"https://www.youtube.com/watch?v=_ZCeptJ77kU",
+      "thumbnailUrl":"https://i.pinimg.com/originals/e9/d2/e5/e9d2e53578d0afe4baa8b704ef31c7f7.jpg"
+   
+}
+,
+   {
+      "albumId":2,
+      "id":2,
+      "title":"Odiyan",
+      "url":"https://www.youtube.com/watch?v=3ZxinGOXGak",
+      "thumbnailUrl":"https://media-cache.cinematerial.com/p/500x/tbwggvgo/odiyan-indian-movie-poster.jpg?v=1540420293"
+   
+},
+   {
+      "albumId":1,
+      "id":1,
       "title":"Nadodikattu",
-      "url":"https://madaboutmoviez.files.wordpress.com/2014/12/nadodikattu-poster.jpg",
+      "url":"https://www.youtube.com/watch?v=6ftMfLhro3E",
       "thumbnailUrl":"https://madaboutmoviez.files.wordpress.com/2014/12/nadodikattu-poster.jpg"
    
 }
