@@ -1,0 +1,8 @@
+/home/raj/dev/projects/final/movie_project/product_development/source/movie_service/movie-inventory/src/main/java/com/yami/movie/inventory/DataStore.java
+/home/raj/dev/projects/final/movie_project/product_development/source/movie_service/movie-inventory/src/main/java/com/yami/movie/inventory/ProductCategory.java
+/home/raj/dev/projects/final/movie_project/product_development/source/movie_service/movie-inventory/src/main/java/com/yami/movie/inventory/search/FieldBoosterFeature.java
+/home/raj/dev/projects/final/movie_project/product_development/source/movie_service/movie-inventory/src/main/java/com/yami/movie/inventory/search/FuzzySearchQuery.java
+/home/raj/dev/projects/final/movie_project/product_development/source/movie_service/movie-inventory/src/main/java/com/yami/movie/inventory/search/SearchQuery.java
+/home/raj/dev/projects/final/movie_project/product_development/source/movie_service/movie-inventory/src/main/java/com/yami/movie/inventory/Movie.java
+/home/raj/dev/projects/final/movie_project/product_development/source/movie_service/movie-inventory/src/main/java/com/yami/movie/inventory/MovieInventory.java
+/home/raj/dev/projects/final/movie_project/product_development/source/movie_service/movie-inventory/src/main/java/com/yami/movie/inventory/LuceneDataStore.java

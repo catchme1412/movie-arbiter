@@ -1,0 +1,8 @@
+com/yami/movie/inventory/search/SearchQuery.class
+com/yami/movie/inventory/Movie.class
+com/yami/movie/inventory/MovieInventory$1.class
+com/yami/movie/inventory/DataStore.class
+com/yami/movie/inventory/LuceneDataStore.class
+com/yami/movie/inventory/MovieInventory.class
+com/yami/movie/inventory/search/FieldBoosterFeature.class
+com/yami/movie/inventory/search/FuzzySearchQuery.class

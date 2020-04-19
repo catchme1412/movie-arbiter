@@ -1,0 +1,20 @@
+[
+  {
+    "category": "rice",
+    "label": {
+      "en_US": "Rice"
+    }
+  },
+  {
+    "category": "oil",
+    "label": {
+      "en_US": "Oil"
+    }
+  },
+  {
+    "category": "boiled_rice",
+    "label": {
+      "en_US": "Boiled rice"
+    }
+  }
+]
