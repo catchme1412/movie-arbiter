@@ -59,7 +59,7 @@ class _SplashScreenState extends State<SplashScreen> {
                   "Watch & share your movies",
                   style: TextStyle(
                     color: Colors.white.withOpacity(0.4),
-                    fontSize: 30,
+                    fontSize: 20,
                   ),
                   textAlign: TextAlign.center,
                 ),

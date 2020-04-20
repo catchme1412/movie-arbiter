@@ -11,7 +11,11 @@ class MovieCards {
 
     List<MovieCard> movies = <MovieCard>[];
     for (Album a in albums) {
-      movies.add(MovieCard(a));
+      movies.add(
+        MovieCard(
+          album: a,
+        ),
+      );
     }
 
     return movies;
@@ -24,7 +28,9 @@ class MovieCards {
     album.thumbnailUrl = 'https://placehold.it/200x250/606060/606060&text=%20';
     List<MovieCard> movies = <MovieCard>[];
     for (int i = 0; i < 6; i++) {
-      movies.add(MovieCard(album));
+      movies.add(MovieCard(
+        album: album,
+      ));
     }
 
     return movies;

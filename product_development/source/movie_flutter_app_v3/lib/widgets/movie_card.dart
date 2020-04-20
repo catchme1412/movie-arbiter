@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:movie_flutter_app_v3/widgets/youtube_video_player.dart';
 
 import 'album.dart';
 
 class MovieCard extends StatelessWidget {
-  Album album;
-  MovieCard(Album album) {
-    this.album = album;
-  }
+  final Album album;
+  MovieCard({this.album});
 
   @override
   Widget build(BuildContext context) {
@@ -95,14 +92,14 @@ class SecondRoute extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: MyHomePage(youtubeAlbum),
-//        child: RaisedButton(
-//          onPressed: () {
-//            // Navigate back to first route when tapped.
-//          },
-//          child: Text('Go back!'),
-//        ),
-//      ),
+      body: Center(
+        child: RaisedButton(
+          onPressed: () {
+            // Navigate back to first route when tapped.
+          },
+          child: Text('Go back!'),
+        ),
+      ),
     );
   }
 }

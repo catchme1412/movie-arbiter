@@ -15,7 +15,7 @@ class AlbumCell extends StatelessWidget {
       ),
       color: Colors.blueGrey[900],
       child: Padding(
-        padding: EdgeInsets.all(2.0),
+        padding: EdgeInsets.all(0.0),
         child: Container(
           alignment: Alignment.center,
           child: Column(
@@ -39,11 +39,11 @@ class AlbumCell extends StatelessWidget {
                 padding: EdgeInsets.all(0.0),
                 child: Text(
                   album.title,
-                  maxLines: 1,
+                  maxLines: 2,
                   softWrap: true,
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    fontSize: 18.0,
+                    fontSize: 14.0,
                     fontWeight: FontWeight.w300,
                     color: Colors.white,
                   ),

@@ -111,7 +111,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 //
                 if (snapshot.hasError) {
                   print("Error ${snapshot.error}");
-                  return Center(child: Text('Error ${snapshot.error}'));
+                  return Center(
+                      child: Text('Please check your internet connection'));
                 }
                 //
                 if (snapshot.hasData) {
