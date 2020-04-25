@@ -1,7 +1,9 @@
+import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
-import 'package:movie_flutter_app_v5/services/navigation_observer.dart';
-import 'package:movie_flutter_app_v5/widgets/movie_card.dart';
 
+import './services/navigation_observer.dart';
+import './widgets/movie_card.dart';
+import './widgets/share_intent_receive.dart';
 import 'context/movie_app_config.dart';
 import 'context/movie_app_context.dart';
 import 'theme/dark.dart';
@@ -14,12 +16,15 @@ class MyApp extends StatelessWidget {
   final MovieAppConfig movieAppConfig = MovieAppConfig();
 
   final MovieAppContext movieAppContext = MovieAppContext();
+
   // This widget is the root of your application.
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      initialRoute: initialRoutePlanner(),
+      initialRoute: initialRoutePlanner(movieAppContext),
 //      routes: {
 //        // When navigating to the "/" route, build the FirstScreen widget.
 //        '/': (context) => LandingPage(),
@@ -27,8 +32,10 @@ class MyApp extends StatelessWidget {
 //        '/second': (context) => MyHomePage(),
 //      },
       routes: <String, WidgetBuilder>{
-        "/second": (BuildContext context) =>
+        "/home": (BuildContext context) =>
             MovieListingPage(title: '', movieAppContext: movieAppContext),
+        "/error": (BuildContext context) => ErrorPage(),
+        "/add": (BuildContext context) => MovieShareReceiver(),
         "/": (context) => LandingPage(movieAppContext: movieAppContext),
         //add more routes here
       },
@@ -39,8 +46,17 @@ class MyApp extends StatelessWidget {
     );
   }
 
-  String initialRoutePlanner() {
+  String initialRoutePlanner(MovieAppContext movieAppContext) {
     return "/";
+  }
+}
+
+class ErrorPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return Container(
+        child: Center(child: Text("Oops, Please check your connectivity!")));
   }
 }
 
@@ -53,17 +69,44 @@ class LandingPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('First Screen'),
+        title: Text('Movie Arbiter'),
       ),
-      body: Center(
-        child: RaisedButton(
-          child: Text('Start'),
-          onPressed: () {
-            // Navigate to the second screen when tapped.
+      body: Column(
+        children: <Widget>[
+          Text(
+            "",
+            style: TextStyle(fontSize: 60),
+          ),
+          Text(
+            "",
+            style: TextStyle(fontSize: 60),
+          ),
+          Text(
+            "Watch Youtube movies",
+            style: TextStyle(fontSize: 25),
+          ),
+          Text(
+            "",
+            style: TextStyle(fontSize: 60),
+          ),
+          Text(
+            "",
+            style: TextStyle(fontSize: 60),
+          ),
+          Center(
+            child: RaisedButton(
+              child: Text(
+                'Start',
+                style: TextStyle(fontSize: 20),
+              ),
+              onPressed: () {
+                // Navigate to the second screen when tapped.
 
-            Navigator.pushNamed(context, '/second');
-          },
-        ),
+                Navigator.pushNamed(context, '/home');
+              },
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -95,24 +138,42 @@ class _MyHomePageState extends State<MovieListingPage> {
 
   List<MovieCard> _movies = [];
 
+  bool isError = false;
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+    checkConnectivity();
     getMovies();
   }
 
   void getMovies() async {
-    List<MovieCard> movies =
-        await widget.movieAppContext.getMovieCardListView().getLatestMovies();
-    setState(() {
-      _movies.addAll(movies);
-    });
+    try {
+      List<MovieCard> movies =
+          await widget.movieAppContext.getMovieCardListView().getLatestMovies();
+      setState(() {
+        _movies.addAll(movies);
+      });
+    } catch (e) {
+      isError = true;
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     print("Build UI $_movies");
+    if (isError) {
+      return SafeArea(
+        child: Scaffold(
+          backgroundColor: Colors.deepOrange,
+          body: Center(
+            child: Text('Oops, please check your internet connectivity!'),
+          ),
+          bottomNavigationBar: PageFooterBar(),
+        ),
+      );
+    }
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
     //
@@ -124,6 +185,7 @@ class _MyHomePageState extends State<MovieListingPage> {
             future: widget.movieAppContext
                 .getMovieCardListView()
                 .getLatestMovies(), //returns bool
+
             builder: (BuildContext context, AsyncSnapshot snapshot) {
               if (snapshot.connectionState == ConnectionState.done) {
                 // YOUR CUSTOM CODE GOES HERE
@@ -140,12 +202,54 @@ class _MyHomePageState extends State<MovieListingPage> {
                       crossAxisCount: 2,
                       children: _movies,
                     )),
-                    bottomNavigationBar: BottomNavigationBar(
-                      items: const <BottomNavigationBarItem>[
-                        BottomNavigationBarItem(
-                          icon: Icon(Icons.home),
-                          title: Text('Home'),
-                        ),
+                    bottomNavigationBar: PageFooterBar(),
+                  ),
+                );
+              } else {
+                return Center(child: CircularProgressIndicator());
+              }
+            }));
+  }
+
+  void checkConnectivity() async {
+    var connectivityResult = await (Connectivity().checkConnectivity());
+    if (connectivityResult == ConnectivityResult.mobile) {
+      // I am connected to a mobile network.
+    } else if (connectivityResult == ConnectivityResult.wifi) {
+      // I am connected to a wifi network.
+    } else {
+      Navigator.pushNamed(context, '/error');
+    }
+  }
+}
+
+class PageFooterBar extends StatelessWidget {
+  const PageFooterBar({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: BottomNavigationBar(
+        onTap: (int index) {
+          print("Selected $index");
+          switch (index) {
+            case 0:
+              Navigator.pushNamed(context, "/home");
+              break;
+            case 2:
+              Navigator.pushNamed(context, "/add");
+              break;
+          }
+        },
+        backgroundColor: Colors.black87,
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            title: Text('Home'),
+          ),
+
 //          BottomNavigationBarItem(
 //            icon: Icon(
 //              Icons.search,
@@ -153,23 +257,28 @@ class _MyHomePageState extends State<MovieListingPage> {
 //            ),
 //            title: Text('Search'),
 //          ),
-                        BottomNavigationBarItem(
-                          icon: Icon(
-                            Icons.dehaze,
-                            color: Colors.white,
-                          ),
-                          title: Text(
-                            'Filter',
-                            style: TextStyle(color: Colors.white),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                );
-              } else {
-                return Center(child: CircularProgressIndicator());
-              }
-            }));
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.dehaze,
+              color: Colors.white,
+            ),
+            title: Text(
+              'Filter',
+              style: TextStyle(color: Colors.white),
+            ),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.add_to_photos,
+              color: Colors.white,
+            ),
+            title: Text(
+              'Add',
+              style: TextStyle(color: Colors.white),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }

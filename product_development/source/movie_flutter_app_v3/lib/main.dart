@@ -41,13 +41,14 @@ class _MovieListingPageState extends State<MovieListingPage> {
   void initState() {
     super.initState();
 
-    setState(() {
-      initLoadMovies();
-    });
+    initLoadMovies();
   }
 
   Future<void> initLoadMovies() async {
-    movieCards = await MovieCards().getLatestMovies();
+    List<MovieCard> listOfMovies = await MovieCards().getLatestMovies();
+    setState(() {
+      movieCards.addAll(listOfMovies);
+    });
   }
 
   @override

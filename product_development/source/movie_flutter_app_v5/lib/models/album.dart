@@ -6,13 +6,16 @@ class Album {
   String thumbnailUrl;
   String youtubeUrl;
 
+  String imdbRating;
+
   Album(
       {this.albumId,
       this.id,
       this.title,
       this.url,
       this.thumbnailUrl,
-      this.youtubeUrl});
+      this.youtubeUrl,
+      this.imdbRating});
 
   // Return object from JSON //
   factory Album.fromJson(Map<String, dynamic> json) {
@@ -22,6 +25,7 @@ class Album {
         title: json['title'] as String,
         url: json['url'] as String,
         thumbnailUrl: json['thumbnailUrl'] as String,
-        youtubeUrl: json['youtubeUrl'] as String);
+        youtubeUrl: json['youtubeUrl'] as String,
+        imdbRating: json['imdbRating'] as String);
   }
 }

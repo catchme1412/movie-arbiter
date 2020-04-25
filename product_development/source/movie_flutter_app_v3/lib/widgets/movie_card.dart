@@ -53,14 +53,14 @@ class MovieCard extends StatelessWidget {
         print("Selected: " + album.title);
         if (album.url.contains("youtube")) {
           print("uuuuuuu");
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => SecondRoute(
-                youtubeAlbum: album,
-              ),
-            ),
-          );
+//          Navigator.push(
+//            context,
+//            MaterialPageRoute(
+//              builder: (context) => SecondRoute(
+//                youtubeAlbum: album,
+//              ),
+//            ),
+//          );
         }
       },
     );
