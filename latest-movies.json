@@ -3,7 +3,8 @@
       "id":10,
       "title":"Mersal",
       "url":"https://www.youtube.com/watch?v=3Z6wl00iHNc",
-      "thumbnailUrl":"https://i.pinimg.com/originals/37/09/13/370913b22a14ae524c199fdbf1f1a9e2.jpg"
+      "thumbnailUrl":"https://i.pinimg.com/originals/37/09/13/370913b22a14ae524c199fdbf1f1a9e2.jpg",
+      "imdbRating": "7.7"
    
 },
  {
@@ -11,7 +12,8 @@
       "id":9,
       "title":"Avarude Raavukal",
       "url":"https://www.youtube.com/watch?v=yvUwfw8Gu8c",
-      "thumbnailUrl":"https://upload.wikimedia.org/wikipedia/en/thumb/8/87/Avarude_Raavukal.jpg/220px-Avarude_Raavukal.jpg"
+      "thumbnailUrl":"https://upload.wikimedia.org/wikipedia/en/thumb/8/87/Avarude_Raavukal.jpg/220px-Avarude_Raavukal.jpg",
+      "imdbRating": "4.5"
    
 },
    {
@@ -19,7 +21,8 @@
       "id":1,
       "title":"Iblis",
       "url":"https://www.youtube.com/watch?v=NDzujNSBHB8",
-      "thumbnailUrl":"https://images.desimartini.com/media/main/original/2018-7/mobile_0af515e2-76bf-4e57-bb63-ec0552c4d712.jpg"
+      "thumbnailUrl":"https://images.desimartini.com/media/main/original/2018-7/mobile_0af515e2-76bf-4e57-bb63-ec0552c4d712.jpg",
+      "imdbRating": "6.5"
    
 },
    {
@@ -36,7 +39,8 @@
       "id":3,
       "title":"Luca",
       "url":"https://www.youtube.com/watch?v=_ZCeptJ77kU",
-      "thumbnailUrl":"https://img.goldposter.com/2019/07/luca_poster_goldposter_com_7.jpg?x-oss-process=image/resize,m_fill,h_200,w_150/quality,q_80"
+      "thumbnailUrl":"https://img.goldposter.com/2019/07/luca_poster_goldposter_com_7.jpg?x-oss-process=image/resize,m_fill,h_200,w_150/quality,q_80",
+      "imdbRating": "7.5"
    
 }
    ,
@@ -45,7 +49,8 @@
       "id":4,
       "title":"Odiyan",
       "url":"https://www.youtube.com/watch?v=3ZxinGOXGak",
-      "thumbnailUrl":"https://media-cache.cinematerial.com/p/500x/tbwggvgo/odiyan-indian-movie-poster.jpg?v=1540420293"
+      "thumbnailUrl":"https://m.media-amazon.com/images/M/MV5BOGY0M2QxNGUtNzlmZi00ZTFiLWI3ZjMtZWVlZjMwYjI4NDZlXkEyXkFqcGdeQXVyMjkxNzQ1NDI@._V1_.jpg",
+      "imdbRating": "5.6"
    
 }
    
@@ -64,7 +69,8 @@
       "id":6,
       "title":"Kakkothikkavile Appooppan Thaadikal",
       "url":"https://www.youtube.com/watch?v=lwONIwNSUJw",
-      "thumbnailUrl":"https://images-na.ssl-images-amazon.com/images/I/917QxOmzfNL._SX569_.jpg"
+      "thumbnailUrl":"https://images-na.ssl-images-amazon.com/images/I/917QxOmzfNL._SX569_.jpg",
+      "imdbRating": "7.6"
    
 }
    ,
