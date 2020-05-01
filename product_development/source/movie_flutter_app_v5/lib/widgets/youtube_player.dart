@@ -1,3 +1,4 @@
+import 'package:MovieArbiter/widgets/page_footer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
@@ -48,7 +49,7 @@ class _YoutubePlayerPageState extends State<YoutubeVideoPage> {
         disableDragSeek: false,
         loop: false,
         isLive: false,
-        forceHideAnnotation: true,
+        forceHideAnnotation: false,
         forceHD: false,
         enableCaption: true,
       ),
@@ -265,32 +266,7 @@ class _YoutubePlayerPageState extends State<YoutubeVideoPage> {
             ],
           ),
         ),
-        bottomNavigationBar: BottomNavigationBar(
-          backgroundColor: Colors.black87,
-          items: const <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              title: Text('Home'),
-            ),
-//          BottomNavigationBarItem(
-//            icon: Icon(
-//              Icons.search,
-//              color: Colors.white,
-//            ),
-//            title: Text('Search'),
-//          ),
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.dehaze,
-                color: Colors.white,
-              ),
-              title: Text(
-                'Filter',
-                style: TextStyle(color: Colors.white),
-              ),
-            ),
-          ],
-        ),
+        bottomNavigationBar: PageFooterBar(),
       ),
     );
   }

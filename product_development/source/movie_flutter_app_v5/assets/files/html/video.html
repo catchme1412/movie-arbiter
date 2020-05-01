@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html style="height:100%">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <title>Web Video Player</title>
+    <script>
+           function loadVideo() {
+               var url_string = window.location.href; // www.test.com?filename=test
+               console.debug("..........................URL:" + url_string);
+                var url = new URL(url_string);
+
+                var paramValue = url.searchParams.get("url");
+                 console.debug(".........................." + paramValue);
+                 console.debug(".........................." + document.getElementById("externalVideo").id);
+                document.getElementById("externalVideo").src= 'https://www.dailymotion.com/embed/video/x2ljpht';
+            }
+            window.onload = function() {
+                document.getElementById("externalVideo").src= 'https://www.dailymotion.com/embed/video/x2ljpht';
+            };
+
+    </script>
+    <style>
+        body {
+            margin: 0;
+        }
+        iframe {
+            display: block;
+            background: #000;
+            border: none;
+<!--            height: 100vh;-->
+<!--            width: 100vw;-->
+        }
+    </style>
+</head>
+<body style="background-color:#2a2a2a;height:100%;min-height: 100%;">
+<div style="height:100%;background-color:#2a2a2a;">
+    <iframe id="externalVideo" height="420" src ="" width="100%" allowfullscreen="true" rel="" frameborder="0" controls=1></iframe>
+</div>
+</body>
+</html>

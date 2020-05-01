@@ -1,5 +1,9 @@
+import 'package:MovieArbiter/widgets/page_footer.dart';
+import 'package:MovieArbiter/widgets/webpage.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 import '../models/album.dart';
 import '../widgets/youtube_player.dart';
@@ -28,8 +32,40 @@ class MovieCard extends StatelessWidget {
               ),
             ),
           );
+        } else {
+//          print(album.url);
+//          SnackBar snackbar = SnackBar(
+//            content: Text(album.url),
+//          );
+//
+//          Scaffold.of(context).showSnackBar(snackbar);
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => WebViewPage(album),
+            ),
+          );
         }
       },
+    );
+  }
+}
+
+class WeblinkPage extends StatelessWidget {
+  final Album album;
+
+  WeblinkPage({Key key, this.album}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return Scaffold(
+      bottomNavigationBar: PageFooterBar(),
+      body: WebView(
+        javascriptMode: JavascriptMode.unrestricted,
+        initialUrl:
+            'https://www.dailymotion.com/embed/video/x2ljpht&amp;controls=1',
+      ),
     );
   }
 }
