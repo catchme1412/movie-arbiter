@@ -115,8 +115,14 @@
       "albumId":2,
       "id":7,
       "title":"Jomonte Suvisheshangal",
-      "url":"https://www.youtube.com/watch?v=EO2vtghYyUg",
-      "thumbnailUrl":"https://img.reelgood.com/content/movie/e7234235-bce4-4364-8bea-74a09e08abbe/poster-780.jpg"
+      "url":"https://www.dailymotion.com/embed/video/x6qx6sw",
+      "urlList": [
+            "https://www.dailymotion.com/embed/video/x6qx6sw",
+            "https://www.dailymotion.com/embed/video/x6r49yi",
+            "https://www.dailymotion.com/embed/video/x6r4l9w"
+      ],
+      "thumbnailUrl":"https://img.reelgood.com/content/movie/e7234235-bce4-4364-8bea-74a09e08abbe/poster-780.jpg",
+         "imdbRating": "6.7"
    
 }
    
