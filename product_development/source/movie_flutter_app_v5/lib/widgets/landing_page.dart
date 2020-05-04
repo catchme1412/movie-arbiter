@@ -30,7 +30,7 @@ class LandingPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: <Widget>[
                   Text(
-                    'Best Online Movies',
+                    'Best Youtube Movies',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         color: Colors.white,

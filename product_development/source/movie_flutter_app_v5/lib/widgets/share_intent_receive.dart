@@ -6,8 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:receive_sharing_intent/receive_sharing_intent.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../theme/dark.dart';
-
 class MovieShareReceiver extends StatefulWidget {
   @override
   _MovieShareReceiverState createState() => _MovieShareReceiverState();
@@ -17,7 +15,7 @@ class _MovieShareReceiverState extends State<MovieShareReceiver> {
   StreamSubscription _intentDataStreamSubscription;
   List<SharedMediaFile> _sharedFiles;
   String _sharedText;
-
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   bool _shared = false;
   TextEditingController emailController = new TextEditingController();
 
@@ -70,99 +68,159 @@ class _MovieShareReceiverState extends State<MovieShareReceiver> {
   @override
   Widget build(BuildContext context) {
     const textStyleBold = const TextStyle(fontWeight: FontWeight.bold);
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: DARK_THEME,
-      home: Scaffold(
-//        appBar: AppBar(
-//          title: const Text('Share from Youtube'),
-//        ),
-        body: SingleChildScrollView(
-          child: Center(
-            child: Column(
-              children: <Widget>[
-                SizedBox(
-                  height: 20,
-                ),
-                Container(
-                  padding: EdgeInsets.all(30.0),
-                  child: Stack(
-                    children: <Widget>[
-//                      Image.asset(
-//                        "assets/images/success.gif",
-//                        height: 125.0,
-//                        width: 125.0,
-//                      ),
-                      Text(
-                        _shared
-                            ? "Thank you for sharing the move!! Your movie will appear after admin's approval."
-                            : '',
-                        style: TextStyle(color: Colors.green, fontSize: 18),
-                      ),
-                    ],
-                  ),
-                ),
+//    return MaterialApp(
+//      debugShowCheckedModeBanner: false,
+//      theme: DARK_THEME,
+    return Scaffold(
+      key: _scaffoldKey,
+      appBar: AppBar(
+        title: const Text('Movie Arbiter'),
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
+            Container(
+              padding: EdgeInsets.fromLTRB(40, 40, 40, 40),
+              child: Image.asset("assets/images/share-4.png"),
+            ),
+            SizedBox(
+              height: _sharedText == null ? 0 : 20,
+            ),
+            Text(
+              _sharedText == null ? '1. Find a good youtube movie' : "",
+              style: TextStyle(fontSize: 14),
+              textAlign: TextAlign.left,
+            ),
+            SizedBox(
+              height: _sharedText == null ? 10 : 0,
+            ),
+            Text(
+              _sharedText == null ? '2. Click the share option' : "",
+              style: TextStyle(fontSize: 14),
+              textAlign: TextAlign.left,
+            ),
+            SizedBox(
+              height: _sharedText == null ? 10 : 0,
+            ),
+            Text(
+              _sharedText == null ? '3. Choose Movie Arbiter' : "",
+              style: TextStyle(fontSize: 14),
+              textAlign: TextAlign.left,
+            ),
+            SizedBox(
+              height: _sharedText == null ? 10 : 0,
+            ),
+            Text(
+              _sharedText == null ? '4. Submit for review' : "",
+              style: TextStyle(fontSize: 14),
+              textAlign: TextAlign.left,
+            ),
+            Text(_sharedText == null ? "" : "Movie you selected:",
+                style: TextStyle(fontSize: 14)),
+            Text(
+              _sharedText ?? "",
+              style: TextStyle(fontSize: 12, color: Colors.blue),
+            ),
 
-                Container(
-                  padding: EdgeInsets.all(26.0),
-                  child: Center(
-                    child: Text(
-                        _sharedText == null
-                            ? 'Find a good movie in youtube, then share here'
-                            : "",
-                        style: TextStyle(fontSize: 18)),
-                  ),
-                ),
-                Text(_sharedText == null ? "" : "Movie you selected:",
-                    style: TextStyle(fontSize: 14)),
-                Text(
-                  _sharedText ?? "",
-                  style: TextStyle(fontSize: 12, color: Colors.blue),
-                ),
-
-                Container(
-                  padding: const EdgeInsets.all(16.0),
+            Container(
+              padding: const EdgeInsets.all(20.0),
 //                width: 150.0,
-                  child: _sharedText != null
-                      ? TextField(
-                          controller: emailController,
-                          obscureText: false,
-                          showCursor: true,
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(),
-                            labelText: 'Name of this movie?',
-                          ),
-                        )
-                      : Container(),
-                ),
-                RaisedButton(
-                  onPressed: () {
-                    if (_sharedText == null) {
-                      _launchURL();
-                    } else {
-                      setState(() {
-                        _sharedText = null;
-                        _shared = true;
-                        MovieAppContext.getInstance().setMovieShared(_shared);
-                      });
+              child: _sharedText != null
+                  ? TextField(
+                      controller: emailController,
+                      obscureText: false,
+                      showCursor: true,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: 'Name of this movie?',
+                      ),
+                    )
+                  : Container(),
+            ),
+            RaisedButton(
+              onPressed: () {
+                if (_sharedText == null) {
+                  _launchURL();
+                } else {
+                  setState(() {
+                    _sharedText = null;
+                    _shared = true;
+                    MovieAppContext.getInstance().setMovieShared(_shared);
+                  });
 // Find the Scaffold in the widget tree and use it to show a SnackBar.
-
-                      print("Submitted:" + emailController.text);
-                    }
-                  },
-                  child: Text(
-                      _sharedText == null ? 'Open youtube' : "Add your movie",
-                      style: TextStyle(fontSize: 16)),
-                ),
+                  SnackBar snackbar = buildSnackbar();
+                  _scaffoldKey.currentState.showSnackBar(snackbar);
+                  print("Submitted:" + emailController.text);
+                }
+              },
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  _sharedText == null
+                      ? Icon(
+                          Icons.search,
+                          color: Colors.white,
+                        )
+                      : Icon(
+                          Icons.add_to_home_screen,
+                          color: Colors.white,
+                        ),
+                  Text(
+                    _sharedText == null ? 'Open youtube' : "Submit for review",
+                    style: TextStyle(
+                      fontSize: 16,
+                    ),
+                  ),
+                ],
+              ),
+            ),
 //              Text("Shared files:", style: textStyleBold),
 //              Text(_sharedFiles?.map((f) => f.path)?.join(",") ?? ""),
-              ],
+          ],
+        ),
+      ),
+      bottomNavigationBar: PageFooterBar(),
+//      ),
+    );
+  }
+
+  SnackBar buildSnackbar() {
+    SnackBar snackbar = SnackBar(
+      backgroundColor: Colors.orange,
+      duration: Duration(seconds: 7),
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          Image.asset(
+            "assets/images/success.gif",
+            height: 100,
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Flexible(
+            child: Text(
+              "Congratulations! You have shared your movie.",
+              style: TextStyle(fontSize: 20),
+              textAlign: TextAlign.center,
             ),
           ),
-        ),
-        bottomNavigationBar: PageFooterBar(),
+          SizedBox(
+            height: 8,
+          ),
+          Flexible(
+            child: Text(
+              "Your contribution will appear after admin's approval",
+              style: TextStyle(fontSize: 14),
+              textAlign: TextAlign.center,
+            ),
+          ),
+          //
+        ],
       ),
     );
+    return snackbar;
   }
 }
 

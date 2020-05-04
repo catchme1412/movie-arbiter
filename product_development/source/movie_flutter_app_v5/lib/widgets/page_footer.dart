@@ -2,6 +2,7 @@ import 'package:MovieArbiter/widgets/share_intent_receive.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'filter_drawer.dart';
 import 'movie_listing.dart';
 
 class PageFooterBar extends StatelessWidget {
@@ -28,11 +29,11 @@ class PageFooterBar extends StatelessWidget {
                       builder: (context) => new MovieListingPage()));
               break;
             case 1:
-//              Navigator.push(
-//                  context,
-//                  new MaterialPageRoute(
-//                      builder: (context) => new MovieFilterPage()));
-              Scaffold.of(context).openEndDrawer();
+              Navigator.push(
+                  context,
+                  new MaterialPageRoute(
+                      builder: (context) => new MovieFilterPage()));
+//              Scaffold.of(context).openEndDrawer();
               break;
             case 2:
               Navigator.push(

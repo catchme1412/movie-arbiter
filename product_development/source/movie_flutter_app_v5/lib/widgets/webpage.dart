@@ -36,10 +36,10 @@ class _WebViewPageState extends State<WebViewPage> {
   @override
   dispose() {
     SystemChrome.setPreferredOrientations([
-      DeviceOrientation.landscapeRight,
-      DeviceOrientation.landscapeLeft,
+//      DeviceOrientation.landscapeRight,
+//      DeviceOrientation.landscapeLeft,
       DeviceOrientation.portraitUp,
-      DeviceOrientation.portraitDown,
+//      DeviceOrientation.portraitDown,
     ]);
     super.dispose();
   }
@@ -57,25 +57,56 @@ class _WebViewPageState extends State<WebViewPage> {
           children: <Widget>[
             WebView(
               initialMediaPlaybackPolicy: AutoMediaPlaybackPolicy.always_allow,
-              initialUrl: '',
+              initialUrl: 'assets/files/html/loadng.html',
               javascriptMode: JavascriptMode.unrestricted,
               onWebViewCreated: (WebViewController webViewController) {
                 _webViewController = webViewController;
                 _loadHtmlFromAssets();
               },
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: <Widget>[
-                FlatButton(
-                  padding: EdgeInsets.fromLTRB(0, 80, 0, 0),
-                  child: buildIcon(),
-                  onPressed: () {
-                    changeOrientation();
+              javascriptChannels: Set.from([
+                JavascriptChannel(
+                    name: 'Print',
+                    onMessageReceived: (JavascriptMessage message) {
+                      //This is where you receive message from
+                      //javascript code and handle in Flutter/Dart
+                      //like here, the message is just being printed
+                      //in Run/LogCat window of android studio
+                      debugPrint(
+                          'Message received: ' + message.message.toString());
+                      if (message.message.toString() == 'fullscreen') {
+                        changeOrientation();
+                      } else {
+                        _loadHtmlFromAssetsNextPart(message.message.toString());
+                      }
+                    })
+              ]),
+              onPageFinished: (value) {
+                setState(
+                  () {
+                    isLoaded = true;
                   },
-                ),
-              ],
+                );
+              },
             ),
+            (isLoaded)
+                ? Container()
+                : Center(
+                    child: CircularProgressIndicator(
+                      backgroundColor: Colors.blueGrey[900],
+                    ),
+                  ),
+//            Row(
+//              mainAxisAlignment: MainAxisAlignment.end,
+//              children: <Widget>[
+//                FlatButton(
+//                  padding: EdgeInsets.fromLTRB(0, 80, 0, 0),
+//                  child: buildIcon(),
+//                  onPressed: () {
+//                    changeOrientation();
+//                  },
+//                ),
+//              ],
+//            ),
           ],
         ),
       ),
@@ -88,6 +119,7 @@ class _WebViewPageState extends State<WebViewPage> {
       return PageFooterBar();
     } else {
 // is landscape
+//      return Container();
     }
   }
 
@@ -100,17 +132,72 @@ class _WebViewPageState extends State<WebViewPage> {
     }
   }
 
-  _loadHtmlFromAssets() async {
+  _loadHtmlFromAssetsNextPart(String url) async {
     String fileHtmlContents = await rootBundle.loadString(filePath);
+
+    fileHtmlContents = fileHtmlContents.replaceAll("videoInjection", url);
+    fileHtmlContents = fileHtmlContents.replaceAll(
+        "MovieNameToBeReplaced", widget.album.title);
+
+    String movieList = "";
+
+    int i = 1;
+    for (String url in widget.album.urlList) {
+      movieList +=
+          "<span onclick=\"Print.postMessage(\'${url.toString()}\');\">&nbsp;&nbsp;$i&nbsp;&nbsp;&nbsp;&nbsp;</span>";
+      i++;
+    }
+    debugPrint(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" + movieList);
+    fileHtmlContents = fileHtmlContents.replaceAll("MOVIELIST", movieList);
+
+    debugPrint(fileHtmlContents);
     _webViewController.loadUrl(Uri.dataFromString(
-      fileHtmlContents + "?url=" + widget.album.url,
+      fileHtmlContents,
       mimeType: 'text/html',
       encoding: Encoding.getByName('utf-8'),
     ).toString());
-    _webViewController.evaluateJavascript(
-        'window.onload = function() {document.getElementById("externalVideo").src= "' +
-            widget.album.url.toString() +
-            '";};');
+//    _webViewController.evaluateJavascript(
+//        "document.getElementById('externalVideo').src= 'https://www.dailymotion.com/embed/video/x2ljpht'"
+////        'window.onload = function() {document.getElementById("externalVideo").src= "' +
+////            widget.album.url.toString() +
+////            '";};',
+//        );
+  }
+
+  _loadHtmlFromAssets() async {
+    String fileHtmlContents = await rootBundle.loadString(filePath);
+
+    fileHtmlContents =
+        fileHtmlContents.replaceAll("videoInjection", widget.album.url);
+    fileHtmlContents = fileHtmlContents.replaceAll(
+        "MovieNameToBeReplaced", widget.album.title);
+
+    String movieList = "";
+
+    int i = 1;
+    if (widget.album.urlList != null) {
+      for (String url in widget.album.urlList) {
+        movieList +=
+            "<span onclick=\"Print.postMessage(\'${url.toString()}\');\">&nbsp;&nbsp;$i&nbsp;&nbsp;&nbsp;&nbsp;</span>";
+        i++;
+      }
+      debugPrint(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" + movieList);
+    }
+
+    fileHtmlContents = fileHtmlContents.replaceAll("MOVIELIST", movieList);
+
+    debugPrint(fileHtmlContents);
+    _webViewController.loadUrl(Uri.dataFromString(
+      fileHtmlContents,
+      mimeType: 'text/html',
+      encoding: Encoding.getByName('utf-8'),
+    ).toString());
+//    _webViewController.evaluateJavascript(
+//        "document.getElementById('externalVideo').src= 'https://www.dailymotion.com/embed/video/x2ljpht'"
+////        'window.onload = function() {document.getElementById("externalVideo").src= "' +
+////            widget.album.url.toString() +
+////            '";};',
+//        );
   }
 
   void changeOrientation() {

@@ -11,7 +11,6 @@ import '../widgets/youtube_player.dart';
 class MovieCard extends StatelessWidget {
   final Album album;
   MovieCard({this.album});
-
   @override
   Widget build(BuildContext context) {
     return FlatButton(
@@ -23,6 +22,11 @@ class MovieCard extends StatelessWidget {
       ),
       onPressed: () {
         print("Selected: " + album.title);
+//        SnackBar snackbar = SnackBar(
+//          content: Text("Loading..."),
+//        );
+//
+//        Scaffold.of(context).showSnackBar(snackbar);
         if (album.url.contains("youtube")) {
           Navigator.push(
             context,
@@ -34,11 +38,7 @@ class MovieCard extends StatelessWidget {
           );
         } else {
 //          print(album.url);
-//          SnackBar snackbar = SnackBar(
-//            content: Text(album.url),
-//          );
-//
-//          Scaffold.of(context).showSnackBar(snackbar);
+
           Navigator.push(
             context,
             MaterialPageRoute(

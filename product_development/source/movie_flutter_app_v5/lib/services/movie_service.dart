@@ -29,6 +29,19 @@ class MovieService {
     }
   }
 
+  Future<List<Album>> filter() async {
+    try {
+      if (albums == null) {
+        http.Response response = await http.get(latestMovies);
+        if (response.statusCode != 200) {
+          throw Exception("Error");
+        }
+      }
+    } catch (e) {
+      throw Exception(e.toString());
+    }
+  }
+
   Future<List<Album>> getLatestMovies() async {
     try {
       if (albums != null) {
