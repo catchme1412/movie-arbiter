@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:MovieArbiter/context/movie_app_context.dart';
+import 'package:MovieArbiter/controller/movie_submission_form_controller.dart';
+import 'package:MovieArbiter/models/movie_submission_form.dart';
 import 'package:MovieArbiter/widgets/page_footer.dart';
 import 'package:flutter/material.dart';
 import 'package:receive_sharing_intent/receive_sharing_intent.dart';
@@ -17,7 +19,48 @@ class _MovieShareReceiverState extends State<MovieShareReceiver> {
   String _sharedText;
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   bool _shared = false;
-  TextEditingController emailController = new TextEditingController();
+
+  // Create a global key that uniquely identifies the Form widget
+  // and allows validation of the form.
+  //
+  // Note: This is a `GlobalKey<FormState>`,
+  // not a GlobalKey<MyCustomFormState>.
+  final _formKey = GlobalKey<FormState>();
+
+  // TextField Controllers
+  TextEditingController titleController = new TextEditingController();
+  TextEditingController urlController = TextEditingController();
+  TextEditingController mobileNoController = TextEditingController();
+  TextEditingController feedbackController = TextEditingController();
+
+  // Method to Submit Feedback and save it in Google Sheets
+  void _submitForm() {
+    // Validate returns true if the form is valid, or false
+    // otherwise.
+    if (_formKey.currentState.validate()) {
+      // If the form is valid, proceed.
+      MovieSubmissionForm feedbackForm = MovieSubmissionForm(urlController.text,
+          titleController.text, urlController.text, urlController.text);
+
+      FormController formController = FormController((String response) {
+        print("Response: $response");
+        if (response == FormController.STATUS_SUCCESS) {
+          // Feedback is saved succesfully in Google Sheets.
+//          _showSnackbar("Feedback Submitted");
+          print(("SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS"));
+        } else {
+          // Error Occurred while saving data in Google Sheets.
+//          _showSnackbar("Error Occurred!");
+          print(("FFFFFFFFFFFFFFFFFFFFFFFFFFFFF"));
+        }
+      });
+
+//      _showSnackbar("Submitting Feedback");
+
+      // Submit 'feedbackForm' and save it in Google Sheets.
+      formController.submitForm(feedbackForm);
+    }
+  }
 
   @override
   void initState() {
@@ -46,6 +89,7 @@ class _MovieShareReceiverState extends State<MovieShareReceiver> {
         ReceiveSharingIntent.getTextStream().listen((String value) {
       setState(() {
         _sharedText = value;
+        urlController.text = _sharedText;
       });
     }, onError: (err) {
       print("getLinkStream error: $err");
@@ -77,107 +121,154 @@ class _MovieShareReceiverState extends State<MovieShareReceiver> {
         title: const Text('Movie Arbiter'),
       ),
       body: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: <Widget>[
-            Container(
-              padding: EdgeInsets.fromLTRB(40, 40, 40, 40),
-              child: Image.asset("assets/images/share-4.png"),
-            ),
-            SizedBox(
-              height: _sharedText == null ? 0 : 20,
-            ),
-            Text(
-              _sharedText == null ? '1. Find a good youtube movie' : "",
-              style: TextStyle(fontSize: 14),
-              textAlign: TextAlign.left,
-            ),
-            SizedBox(
-              height: _sharedText == null ? 10 : 0,
-            ),
-            Text(
-              _sharedText == null ? '2. Click the share option' : "",
-              style: TextStyle(fontSize: 14),
-              textAlign: TextAlign.left,
-            ),
-            SizedBox(
-              height: _sharedText == null ? 10 : 0,
-            ),
-            Text(
-              _sharedText == null ? '3. Choose Movie Arbiter' : "",
-              style: TextStyle(fontSize: 14),
-              textAlign: TextAlign.left,
-            ),
-            SizedBox(
-              height: _sharedText == null ? 10 : 0,
-            ),
-            Text(
-              _sharedText == null ? '4. Submit for review' : "",
-              style: TextStyle(fontSize: 14),
-              textAlign: TextAlign.left,
-            ),
-            Text(_sharedText == null ? "" : "Movie you selected:",
-                style: TextStyle(fontSize: 14)),
-            Text(
-              _sharedText ?? "",
-              style: TextStyle(fontSize: 12, color: Colors.blue),
-            ),
+        child: Form(
+          key: _formKey,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              Container(
+                padding: EdgeInsets.fromLTRB(40, 40, 40, 40),
+                child: Image.asset("assets/images/share-4.png"),
+              ),
+              SizedBox(
+                height: 40,
+              ),
+              _sharedText == null
+                  ? Text(
+                      '1. Find a good youtube movie',
+                      style: TextStyle(fontSize: 14),
+                      textAlign: TextAlign.left,
+                    )
+                  : Container(),
 
-            Container(
-              padding: const EdgeInsets.all(20.0),
-//                width: 150.0,
-              child: _sharedText != null
-                  ? TextField(
-                      controller: emailController,
-                      obscureText: false,
-                      showCursor: true,
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(),
-                        labelText: 'Name of this movie?',
+              SizedBox(
+                height: _sharedText == null ? 8 : 0,
+              ),
+              _sharedText == null
+                  ? Text(
+                      '2. Click the share option',
+                      style: TextStyle(fontSize: 14),
+                      textAlign: TextAlign.left,
+                    )
+                  : Container(),
+
+              SizedBox(
+                height: _sharedText == null ? 8 : 0,
+              ),
+              _sharedText == null
+                  ? Text(
+                      '3. Choose Movie Arbiter',
+                      style: TextStyle(fontSize: 14),
+                      textAlign: TextAlign.left,
+                    )
+                  : Container(),
+
+              SizedBox(
+                height: _sharedText == null ? 8 : 0,
+              ),
+              _sharedText == null
+                  ? Text(
+                      '4. Submit for review',
+                      style: TextStyle(fontSize: 14),
+                      textAlign: TextAlign.left,
+                    )
+                  : Container(),
+
+              Text(
+                _sharedText == null ? "" : "Your movie selection:",
+                style: TextStyle(fontSize: 16),
+              ),
+              _sharedText != null
+                  ? Container(
+                      padding: const EdgeInsets.fromLTRB(10, 0, 0, 10),
+                      width: 200.0,
+                      child: TextFormField(
+                        style: TextStyle(fontSize: 12, color: Colors.blue),
+                        controller: urlController,
+                        obscureText: false,
+                        showCursor: true,
+                        enableInteractiveSelection: false,
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                        ),
+                        validator: (value) {
+                          if (value.trim().length == 0) {
+                            return 'Cannot be empty';
+                          }
+                          return null;
+                        },
                       ),
                     )
                   : Container(),
-            ),
-            RaisedButton(
-              onPressed: () {
-                if (_sharedText == null) {
-                  _launchURL();
-                } else {
-                  setState(() {
-                    _sharedText = null;
-                    _shared = true;
-                    MovieAppContext.getInstance().setMovieShared(_shared);
-                  });
-// Find the Scaffold in the widget tree and use it to show a SnackBar.
-                  SnackBar snackbar = buildSnackbar();
-                  _scaffoldKey.currentState.showSnackBar(snackbar);
-                  print("Submitted:" + emailController.text);
-                }
-              },
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  _sharedText == null
-                      ? Icon(
-                          Icons.search,
-                          color: Colors.white,
-                        )
-                      : Icon(
-                          Icons.add_to_home_screen,
-                          color: Colors.white,
+
+              Container(
+                padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+//                width: 150.0,
+                child: _sharedText != null
+                    ? TextFormField(
+                        controller: titleController,
+                        obscureText: false,
+                        showCursor: true,
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          labelText: 'Name of this movie?',
                         ),
-                  Text(
-                    _sharedText == null ? 'Open youtube' : "Submit for review",
-                    style: TextStyle(
-                      fontSize: 16,
-                    ),
-                  ),
-                ],
+                        validator: (value) {
+                          if (value.trim().length == 0) {
+                            return 'What is the movie name?';
+                          }
+                          return null;
+                        },
+                      )
+                    : Container(),
               ),
-            ),
+              SizedBox(
+                height: _sharedText != null ? 8 : 0,
+              ),
+              RaisedButton(
+                onPressed: () {
+                  if (_sharedText == null) {
+                    _launchURL();
+                  } else {
+                    setState(() {
+                      _sharedText = null;
+                      _shared = true;
+                      _submitForm();
+                      MovieAppContext.getInstance().setMovieShared(_shared);
+                    });
+// Find the Scaffold in the widget tree and use it to show a SnackBar.
+                    SnackBar snackbar = buildSnackbar();
+                    _scaffoldKey.currentState.showSnackBar(snackbar);
+                    print("Submitted:" + titleController.text);
+                  }
+                },
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    _sharedText == null
+                        ? Icon(
+                            Icons.search,
+                            color: Colors.white,
+                          )
+                        : Icon(
+                            Icons.add_to_home_screen,
+                            color: Colors.white,
+                          ),
+                    Text(
+                      _sharedText == null
+                          ? 'Open youtube'
+                          : "Submit for review",
+                      style: TextStyle(
+                        fontSize: 16,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
 //              Text("Shared files:", style: textStyleBold),
 //              Text(_sharedFiles?.map((f) => f.path)?.join(",") ?? ""),
-          ],
+            ],
+          ),
         ),
       ),
       bottomNavigationBar: PageFooterBar(),

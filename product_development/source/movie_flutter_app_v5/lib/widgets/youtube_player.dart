@@ -49,7 +49,7 @@ class _YoutubePlayerPageState extends State<YoutubeVideoPage> {
         disableDragSeek: false,
         loop: false,
         isLive: false,
-        forceHideAnnotation: false,
+//        forceHideAnnotation: false,
         forceHD: false,
         enableCaption: true,
       ),

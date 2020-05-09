@@ -50,6 +50,7 @@ class _MyHomePageState extends State<MovieListingPage> {
     } catch (e) {
       errorMessage = e.toString();
       print(e);
+
       isError = true;
     }
   }
