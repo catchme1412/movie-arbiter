@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 import '../models/album.dart';
+import 'app_bar.dart';
 import 'page_footer.dart';
 
 /// Homepage
@@ -95,32 +96,7 @@ class _YoutubePlayerPageState extends State<YoutubeVideoPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
-      appBar: AppBar(
-        backgroundColor: Colors.black87,
-//        leading: Padding(
-//          padding: const EdgeInsets.only(left: 12.0),
-//          child: Image.asset(
-//            'assets/ypf.png',
-//            fit: BoxFit.fitWidth,
-//          ),
-//        ),
-        title: Text(
-          //TODO replace with Movie title
-          'Movie Arbiter',
-          style: TextStyle(color: Colors.white),
-        ),
-        actions: [
-//          IconButton(
-//            icon: Icon(Icons.video_library),
-//            onPressed: () => Navigator.push(
-//              context,
-//              CupertinoPageRoute(
-////                builder: (context) => VideoList(),
-//                  ),
-//            ),
-//          ),
-        ],
-      ),
+      appBar: APP_BAR,
       body: Scaffold(
         body: Container(
           color: Colors.blueGrey[900],

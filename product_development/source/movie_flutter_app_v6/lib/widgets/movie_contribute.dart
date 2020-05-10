@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:movie_flutter_app_v6/widgets/page_footer.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import 'app_bar.dart';
+
 class MovieContribute extends StatefulWidget {
   @override
   _MovieContributeState createState() => _MovieContributeState();
@@ -12,9 +14,7 @@ class _MovieContributeState extends State<MovieContribute> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Movie Arbiter"),
-      ),
+      appBar: APP_BAR,
       bottomNavigationBar: PageFooterBar(),
       body: SafeArea(
         child: Column(

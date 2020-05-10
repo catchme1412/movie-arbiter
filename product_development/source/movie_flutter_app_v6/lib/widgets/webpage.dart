@@ -8,6 +8,7 @@ import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import '../models/album.dart';
 import '../theme/dark.dart';
 import '../widgets/page_footer.dart';
+import 'app_bar.dart';
 
 class WebViewPage extends StatefulWidget {
   Album album;
@@ -52,7 +53,7 @@ class _WebViewPageState extends State<WebViewPage> {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         backgroundColor: Colors.blueGrey[900],
-        appBar: buildAppBar(),
+        appBar: APP_BAR,
         bottomNavigationBar: buildPageFooterBar(),
         body: Stack(
           children: <Widget>[

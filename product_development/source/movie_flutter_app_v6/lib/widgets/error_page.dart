@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:movie_flutter_app_v6/widgets/page_footer.dart';
 
+import 'app_bar.dart';
+
 class ErrorPage extends StatefulWidget {
   static const ROUTE = "error";
 
@@ -16,9 +18,7 @@ class _ErrorPageState extends State<ErrorPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Movie Arbiter"),
-      ),
+      appBar: APP_BAR,
       bottomNavigationBar: PageFooterBar(),
       body: SafeArea(
         child: Center(
@@ -32,7 +32,7 @@ class _ErrorPageState extends State<ErrorPage> {
                 padding: EdgeInsets.all(20),
                 child: Text(
                   widget.message,
-                  style: TextStyle(fontSize: 20),
+                  style: TextStyle(fontSize: 16),
                 ),
               ),
             ],

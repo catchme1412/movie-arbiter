@@ -5,6 +5,8 @@ import 'package:movie_flutter_app_v6/controller/movie_submission_form_controller
 import 'package:movie_flutter_app_v6/models/movie_submission_form.dart';
 import 'package:movie_flutter_app_v6/widgets/page_footer.dart';
 
+import 'app_bar.dart';
+
 class MovieShareResume extends StatefulWidget {
   final Map<dynamic, dynamic> sharedData;
 
@@ -72,9 +74,7 @@ class _MovieShareResumeState extends State<MovieShareResume> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
-      appBar: AppBar(
-        title: Text("Movie Arbiter"),
-      ),
+      appBar: APP_BAR,
       bottomNavigationBar: PageFooterBar(),
       body: SafeArea(
         child: SingleChildScrollView(
