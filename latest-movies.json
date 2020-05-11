@@ -1,13 +1,5 @@
 [{
       "albumId":1,
-      "id":18,
-      "title":"Ayyappanum Koshiyum",
-      "url":"https://www.youtube.com/watch?v=fcnjzJOGfjE",
-      "thumbnailUrl":"https://m.media-amazon.com/images/M/MV5BYTZmYmI3OWEtNTIwOC00ODcwLWIwMGMtMWYwZWI3YzQ3NDJjXkEyXkFqcGdeQXVyMjkxNzQ1NDI@._V1_QL50_SY1000_CR0,0,666,1000_AL_.jpg",
-      "imdbRating": "7.9"
-   
-},{
-      "albumId":1,
       "id":17,
       "title":"Dear Zindagi",
       "url":"https://www.youtube.com/watch?v=kSep4hMsE1A",
