@@ -27,15 +27,7 @@
       "imdbRating": "6.6"
    
 },
- {
-      "albumId":1,
-      "id":19,
-      "title":"Big Brother",
-      "url":"https://www.youtube.com/watch?v=enVnnRXUqyY",
-      "thumbnailUrl":"https://upload.wikimedia.org/wikipedia/en/6/6c/Big_Brother_new_poster.jpg",
-      "imdbRating": "3.3"
-   
-},
+ 
  {
       "albumId":1,
       "id":18,
