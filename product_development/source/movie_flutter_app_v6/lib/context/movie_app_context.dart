@@ -6,9 +6,12 @@ class MovieAppContext {
   MovieService movieService;
   MovieCardListView movieCardListView;
   ConnectionStatusSingleton connectionStatus;
+
+  int bottomNavigationIndex;
 //  StreamSubscription connectionChangeStream;
 
   MovieAppContext() {
+    bottomNavigationIndex = 0;
     movieService = MovieService();
     movieCardListView = MovieCardListView(movieService);
     connectionStatus = ConnectionStatusSingleton.getInstance();
@@ -35,5 +38,13 @@ class MovieAppContext {
 
   ConnectionStatusSingleton getConnectionStatus() {
     return connectionStatus;
+  }
+
+  void setBottomNavigationIndex(int index) {
+    bottomNavigationIndex = index;
+  }
+
+  int getBottomNavigationIndex() {
+    return bottomNavigationIndex;
   }
 }

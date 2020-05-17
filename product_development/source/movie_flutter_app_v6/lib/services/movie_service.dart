@@ -30,7 +30,7 @@ class MovieService {
     }
   }
 
-  Future<List<Album>> filter() async {
+  Future<List<Album>> filterByName(String name) async {
     try {
       if (albums == null) {
         http.Response response = await http.get(latestMovies);

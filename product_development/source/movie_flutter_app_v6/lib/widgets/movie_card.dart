@@ -1,10 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:youtube_player_flutter/youtube_player_flutter.dart';
+import 'package:flutter/rendering.dart';
 
 import '../models/album.dart';
-import '../widgets/page_footer.dart';
 import '../widgets/webpage.dart';
 import '../widgets/youtube_player.dart';
 
@@ -51,25 +50,6 @@ class MovieCard extends StatelessWidget {
   }
 }
 
-class WeblinkPage extends StatelessWidget {
-  final Album album;
-
-  WeblinkPage({Key key, this.album}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    // TODO: implement build
-    return Scaffold(
-      bottomNavigationBar: PageFooterBar(),
-      body: WebView(
-        javascriptMode: JavascriptMode.unrestricted,
-        initialUrl:
-            'https://www.dailymotion.com/embed/video/x2ljpht&amp;controls=1',
-      ),
-    );
-  }
-}
-
 class MovieCardImageSection extends StatelessWidget {
   const MovieCardImageSection({
     Key key,
@@ -80,17 +60,37 @@ class MovieCardImageSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      alignment: Alignment.center,
-      child: FadeInImage.assetNetwork(
-        image: album.thumbnailUrl,
+    return Stack(
+      children: <Widget>[
+        Container(
+          alignment: Alignment.center,
+          child: FadeInImage.assetNetwork(
+            image: album.thumbnailUrl,
 //              image:
 //                  'https://i.pinimg.com/originals/37/09/13/370913b22a14ae524c199fdbf1f1a9e2.jpg',
-        placeholder: "assets/images/no_image.png",
-        height: 250,
-        width: double.infinity,
-        fit: BoxFit.cover,
-      ),
+            placeholder: "assets/images/no_image.png",
+            height: 250,
+            width: double.infinity,
+            fit: BoxFit.cover,
+          ),
+        ),
+        Opacity(
+          opacity: 0.8,
+          child: CircleAvatar(
+            backgroundImage: AssetImage("assets/images/award-yellow.png"),
+//                    backgroundColor: Colors.orange,
+            backgroundColor: Colors.transparent,
+            radius: 14,
+            child: Text(
+              album.imdbRating != null ? album.imdbRating : "",
+              style: TextStyle(
+                  fontSize: 13,
+                  color: Colors.black87,
+                  fontWeight: FontWeight.bold),
+            ),
+          ),
+        )
+      ],
     );
   }
 }
@@ -106,47 +106,70 @@ class MovieTitleSectionInCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        alignment: Alignment.bottomCenter,
-        child: Opacity(
-          opacity: .9,
+      alignment: Alignment.bottomCenter,
+      child: Opacity(
+        opacity: .90,
+        child: Container(
+          padding: EdgeInsets.fromLTRB(6, 6, 2, 2),
+          width: double.infinity,
+          color: Colors.black87,
           child: Container(
-            width: double.infinity,
-            color: Colors.black87,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+//                Expanded(
+//                  child: Text('Deliver features faster',
+//                      textAlign: TextAlign.center),
+//                ),
+//                Expanded(
+//                  child:
+//                      Text('Craft beautiful UIs', textAlign: TextAlign.center),
+//                ),
+//                Expanded(
+//                  child: FittedBox(
+//                    fit: BoxFit.contain, // otherwise the logo will be tiny
+//                    child: const FlutterLogo(),
+//                  ),
+//                ),
 //
-            child: Padding(
-              padding: EdgeInsets.fromLTRB(8, 4, 8, 2),
-              child: RichText(
-                text: new TextSpan(
-                  // Note: Styles for TextSpans must be explicitly defined.
-                  // Child text spans will inherit styles from parent
-                  style: new TextStyle(
-                    fontSize: 14.0,
-                    color: Colors.white,
+                Flexible(
+                  child: Text(
+                    album.title,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
+                    textAlign: TextAlign.start,
+                    style: TextStyle(
+                      fontSize: 12,
+                      fontFamily: 'Arial Narrow',
+                      color: Colors.white,
+                      shadows: [
+                        Shadow(
+                          blurRadius: 1.0,
+                          color: Colors.black87,
+                          offset: Offset(1.0, 1.0),
+                        ),
+                      ],
+                    ),
                   ),
-                  children: <TextSpan>[
-                    new TextSpan(
-                        text: album.imdbRating,
-                        style: new TextStyle(
-                            color: Colors.yellowAccent,
-                            fontSize: 12,
-                            backgroundColor: Colors.black87)),
-                    new TextSpan(text: '  ' + album.title),
-                  ],
                 ),
-              ),
+
+//                CircleAvatar(
+////                    backgroundImage: AssetImage("assets/images/star.png"),
+////                    backgroundColor: Colors.orange,
+//                    radius: 14,
 //                    child: Text(
-//                      album.title + '  ' + album.imdbRating,
-//                      textAlign: TextAlign.center,
-//                      maxLines: 2,
-//                      overflow: TextOverflow.ellipsis,
+//                      album.imdbRating != null ? album.imdbRating : "",
 //                      style: TextStyle(
-//                        fontWeight: FontWeight.normal,
-//                        fontSize: 12.0,
-////                        backgroundColor: Colors.blueGrey[900],
-//                      ),
-//                    ),
+//                          fontSize: 14,
+//                          color: Colors.yellowAccent,
+//                          fontWeight: FontWeight.bold),
+//                    ))
+              ],
             ),
           ),
-        ));
+        ),
+      ),
+    );
   }
 }

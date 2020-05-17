@@ -88,7 +88,7 @@ class _MovieShareResumeState extends State<MovieShareResume> {
                   child: Image.asset("assets/images/share-4.png"),
                 ),
                 Text(
-                  "Youtube title:",
+                  "Youtube link:",
                   style: TextStyle(
                     fontSize: 16,
                   ),
@@ -96,7 +96,7 @@ class _MovieShareResumeState extends State<MovieShareResume> {
                 Container(
                   padding: EdgeInsets.fromLTRB(20, 5, 20, 0),
                   child: Text(
-                    sharedData.values.elementAt(0).toString(),
+                    sharedData.values.elementAt(1).toString(),
                     style: TextStyle(color: Colors.blueGrey),
                   ),
                 ),
@@ -118,35 +118,45 @@ class _MovieShareResumeState extends State<MovieShareResume> {
                     },
                   ),
                 ),
-                RaisedButton(
-                  onPressed: () {
-                    if (_isButtonDisabled) {
-                      return null;
-                    } else {
-                      _submitMovie();
-                    }
-                  },
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[
-                      _isButtonDisabled
-                          ? Icon(
-                              Icons.thumb_up,
-                              color: Colors.white,
-                            )
-                          : Icon(
-                              Icons.add_to_home_screen,
-                              color: Colors.white,
+                _isButtonDisabled
+                    ? Container(
+                        padding: EdgeInsets.all(20),
+                        child: Text(
+                          "Your contribution will appear after admin's approval.",
+                          style: TextStyle(
+                            color: Colors.green,
+                          ),
+                        ),
+                      )
+                    : RaisedButton(
+                        onPressed: () {
+                          if (_isButtonDisabled) {
+                            return null;
+                          } else {
+                            _submitMovie();
+                          }
+                        },
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: <Widget>[
+                            _isButtonDisabled
+                                ? Icon(
+                                    Icons.thumb_up,
+                                    color: Colors.white,
+                                  )
+                                : Icon(
+                                    Icons.add_to_home_screen,
+                                    color: Colors.white,
+                                  ),
+                            Text(
+                              _isButtonDisabled ? " Thank you " : "Submit",
+                              style: TextStyle(
+                                fontSize: 16,
+                              ),
                             ),
-                      Text(
-                        _isButtonDisabled ? " Done" : "Submit for review",
-                        style: TextStyle(
-                          fontSize: 16,
+                          ],
                         ),
                       ),
-                    ],
-                  ),
-                ),
               ],
             ),
           ),

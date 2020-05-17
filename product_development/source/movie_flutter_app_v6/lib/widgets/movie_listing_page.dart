@@ -102,10 +102,10 @@ class _MyHomePageState extends State<MovieListingPage> {
                         // in the middle of the parent.
                         child: GridView.count(
                       primary: false,
-                      padding: const EdgeInsets.all(10),
-                      crossAxisSpacing: 10,
-                      mainAxisSpacing: 10,
+                      padding: const EdgeInsets.all(1),
                       crossAxisCount: 2,
+                      crossAxisSpacing: 0,
+                      mainAxisSpacing: 10,
                       children: _movies,
                     )),
                     bottomNavigationBar: PageFooterBar(),

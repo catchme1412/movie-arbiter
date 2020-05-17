@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:movie_flutter_app_v6/widgets/error_page.dart';
+import 'package:movie_flutter_app_v6/widgets/movie_listing_page.dart';
 
 import 'landing-page.dart';
 import 'movie-share-resume.dart';
@@ -52,8 +52,8 @@ class _LandingPageDecisionMakerState extends State<LandingPageDecisionMaker> {
       Navigator.push(
           context,
           new MaterialPageRoute(
-              builder: (context) => ErrorPage(
-                    message: "Please try again!",
+              builder: (context) => MovieListingPage(
+//                    message: "Please try again!",
                   )));
       return null;
     });

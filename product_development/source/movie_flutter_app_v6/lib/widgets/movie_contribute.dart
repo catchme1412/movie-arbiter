@@ -40,6 +40,7 @@ class _MovieContributeState extends State<MovieContribute> {
             Container(
               alignment: Alignment.center,
               child: RaisedButton(
+                splashColor: Colors.redAccent,
                 onPressed: () {
                   _launchURL();
                 },

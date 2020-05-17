@@ -81,7 +81,7 @@ class _MovieSharePageState extends State<MovieSharePage> {
                   child: Image.asset("assets/images/share-4.png"),
                 ),
                 Text(
-                  "Youtube title:",
+                  "Youtube link:",
                   style: TextStyle(
                     fontSize: 16,
                   ),
@@ -89,7 +89,7 @@ class _MovieSharePageState extends State<MovieSharePage> {
                 Container(
                   padding: EdgeInsets.fromLTRB(20, 5, 20, 0),
                   child: Text(
-                    sharedData.values.elementAt(0).toString(),
+                    sharedData.values.elementAt(1).toString(),
                     style: TextStyle(color: Colors.blueGrey),
                   ),
                 ),
@@ -112,6 +112,7 @@ class _MovieSharePageState extends State<MovieSharePage> {
                   ),
                 ),
                 RaisedButton(
+                  splashColor: Colors.greenAccent,
                   onPressed: () {
                     if (_isButtonDisabled) {
                       return null;
@@ -132,11 +133,19 @@ class _MovieSharePageState extends State<MovieSharePage> {
                               color: Colors.white,
                             ),
                       Text(
-                        _isButtonDisabled ? " Done" : "Submit for review",
+                        _isButtonDisabled ? " Thank you" : "Submit",
                         style: TextStyle(
-                          fontSize: 16,
-                        ),
+                            fontSize: 16,
+                            color: _isButtonDisabled
+                                ? Colors.green
+                                : Colors.orangeAccent),
                       ),
+                      _isButtonDisabled
+                          ? Text(
+                              "Your contribution will appear after admin's approval.",
+                              style: TextStyle(color: Colors.yellowAccent),
+                            )
+                          : Text(""),
                     ],
                   ),
                 ),

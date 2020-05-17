@@ -81,11 +81,13 @@ class _YoutubePlayerPageState extends State<YoutubeVideoPage> {
     // Pauses video while navigating to next page.
     _controller.pause();
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+    _controller.pause();
     super.deactivate();
   }
 
   @override
   void dispose() {
+    _controller.pause();
     _controller.dispose();
     _idController.dispose();
     _seekToController.dispose();
@@ -149,13 +151,12 @@ class _YoutubePlayerPageState extends State<YoutubeVideoPage> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
-                        _space,
-                        _text('Title', _videoMetaData.title),
-                        _space,
+//                        _space,
+                        _text('Title', curAlbum.title),
 //                _text('Channel', _videoMetaData.author),
-                        _space,
+//                        _space,
 
-                        _space,
+//                        _space,
 
                         _space,
                         Row(
