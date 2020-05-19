@@ -1,4 +1,5 @@
-[{
+[
+ {
       "albumId":1,
       "id":25,
       "title":"Queen",
@@ -147,6 +148,7 @@
       "imdbRating": "8.5"
    
 },
+      
  {
       "albumId":1,
       "id":10,
@@ -246,7 +248,15 @@
       "url":"https://www.youtube.com/watch?v=y6qbdSuJOyI",
       "thumbnailUrl":"https://i.redd.it/53tgur4z5sy21.jpg"
    
-}
+},
+      
+      {
+      "albumId":1,
+      "id":26,
+      "title":"Seniors",
+      "url":"https://www.youtube.com/watch?v=KIIlnfvVXHQ", 
+      "thumbnailUrl":"https://upload.wikimedia.org/wikipedia/en/b/b1/Seniors_film.jpg",
+      "imdbRating": "6.3"
    
-
+}
 ]
