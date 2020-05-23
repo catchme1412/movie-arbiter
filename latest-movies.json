@@ -10,10 +10,11 @@
  {
       "albumId":1,
       "id":25,
-      "title":"Queen",
-      "url":"https://www.youtube.com/watch?v=SbiFWbaha9k", 
-      "thumbnailUrl":"https://upload.wikimedia.org/wikipedia/en/6/63/Poster_of_Malayalam_Movie_Queen.jpg",
-      "imdbRating": "7.1"
+      "title":"96 (Hindi)",
+      "url":"https://www.youtube.com/watch?v=63F9Pv4k4wk",
+      
+      "thumbnailUrl":"https://img.studioflicks.com//wp-content/uploads/2018/09/96-Movie-Poster.jpg",
+      "imdbRating": "8.6"
    
 },{
       "albumId":1,
