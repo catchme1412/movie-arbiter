@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "913937597809",
+    "firebase_url": "https://movie-arbiter-274109.firebaseio.com",
+    "project_id": "movie-arbiter-274109",
+    "storage_bucket": "movie-arbiter-274109.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:913937597809:android:c4830e122c5bd48d4ba2d0",
+        "android_client_info": {
+          "package_name": "com.yami.movie"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "913937597809-jj701tnjkhsc82vvrialp0s3pt5k288g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCmtpkwHB722iFfw3MlC__i2TBXOgfHajQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "913937597809-n651tjf9mnnccjo93pu9d6er1o1h0j9b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

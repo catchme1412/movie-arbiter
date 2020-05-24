@@ -6,6 +6,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'app_bar.dart';
 
 class MovieContribute extends StatefulWidget {
+  static const ROUTE = "contribute-movie";
   @override
   _MovieContributeState createState() => _MovieContributeState();
 }

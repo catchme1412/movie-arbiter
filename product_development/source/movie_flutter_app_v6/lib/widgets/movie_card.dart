@@ -74,19 +74,22 @@ class MovieCardImageSection extends StatelessWidget {
             fit: BoxFit.cover,
           ),
         ),
-        Opacity(
-          opacity: 0.8,
-          child: CircleAvatar(
-            backgroundImage: AssetImage("assets/images/award-yellow.png"),
+        Container(
+          padding: EdgeInsets.all(2),
+          child: Opacity(
+            opacity: 0.8,
+            child: CircleAvatar(
+              backgroundImage: AssetImage("assets/images/award-yellow.png"),
 //                    backgroundColor: Colors.orange,
-            backgroundColor: Colors.transparent,
-            radius: 14,
-            child: Text(
-              album.imdbRating != null ? album.imdbRating : "",
-              style: TextStyle(
-                  fontSize: 13,
-                  color: Colors.black87,
-                  fontWeight: FontWeight.bold),
+              backgroundColor: Colors.transparent,
+              radius: 14,
+              child: Text(
+                album.imdbRating != null ? album.imdbRating : "",
+                style: TextStyle(
+                    fontSize: 13,
+                    color: Colors.black87,
+                    fontWeight: FontWeight.bold),
+              ),
             ),
           ),
         )

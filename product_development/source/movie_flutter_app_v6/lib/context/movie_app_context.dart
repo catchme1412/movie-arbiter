@@ -7,6 +7,9 @@ class MovieAppContext {
   MovieCardListView movieCardListView;
   ConnectionStatusSingleton connectionStatus;
 
+  static const IS_LOGGED_IN = "IS_LOGGED_IN";
+  static const USER_NAME = "USER_NAME";
+
   int bottomNavigationIndex;
 //  StreamSubscription connectionChangeStream;
 

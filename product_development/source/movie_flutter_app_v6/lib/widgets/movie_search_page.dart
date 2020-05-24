@@ -6,6 +6,7 @@ import '../widgets/movie_card.dart';
 import '../widgets/page_footer.dart';
 
 class SearchList extends StatefulWidget {
+  static const ROUTE = "search-list";
   SearchList({Key key}) : super(key: key);
   @override
   _SearchListState createState() => _SearchListState();
@@ -110,44 +111,50 @@ class _SearchListState extends State<SearchList> {
   }
 
   Widget buildBar(BuildContext context) {
-    return AppBar(
-        elevation: 0,
-        backgroundColor: Colors.black87,
-        centerTitle: true,
-        title: appBarTitle,
-        iconTheme: IconThemeData(color: Colors.black87),
-        actions: <Widget>[
-          CircleAvatar(
-            radius: 20,
-            backgroundColor: Colors.black87,
-            child: IconButton(
-              icon: actionIcon,
-              onPressed: () {
-                setState(() {
-                  if (this.actionIcon.icon == Icons.search) {
-                    this.actionIcon = Icon(
-                      Icons.close,
-                      color: Colors.white,
-                    );
-                    this.appBarTitle = TextField(
-                      controller: _searchQuery,
-                      style: TextStyle(
+    return PreferredSize(
+      preferredSize: Size.fromHeight(80.0),
+      child: AppBar(
+          flexibleSpace: Column(
+//            children: <Widget>[Text('ff'), Text("FF")],
+              ),
+          elevation: 0,
+          backgroundColor: Colors.black87,
+          centerTitle: true,
+          title: appBarTitle,
+          iconTheme: IconThemeData(color: Colors.black87),
+          actions: <Widget>[
+            CircleAvatar(
+              radius: 20,
+              backgroundColor: Colors.black87,
+              child: IconButton(
+                icon: actionIcon,
+                onPressed: () {
+                  setState(() {
+                    if (this.actionIcon.icon == Icons.search) {
+                      this.actionIcon = Icon(
+                        Icons.close,
                         color: Colors.white,
-                        fontSize: 14,
-                      ),
-                      decoration: InputDecoration(
-                          hintText: "Search here..",
-                          hintStyle: TextStyle(color: Colors.grey)),
-                    );
-                    _handleSearchStart();
-                  } else {
-                    _handleSearchEnd();
-                  }
-                });
-              },
+                      );
+                      this.appBarTitle = TextField(
+                        controller: _searchQuery,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 14,
+                        ),
+                        decoration: InputDecoration(
+                            hintText: "Search here..",
+                            hintStyle: TextStyle(color: Colors.grey)),
+                      );
+                      _handleSearchStart();
+                    } else {
+                      _handleSearchEnd();
+                    }
+                  });
+                },
+              ),
             ),
-          ),
-        ]);
+          ]),
+    );
   }
 
   void _handleSearchStart() {

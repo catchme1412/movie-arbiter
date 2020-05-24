@@ -12,6 +12,8 @@ class PageFooterBar extends StatefulWidget {
 }
 
 class _BottomNaviationState extends State<PageFooterBar> {
+  int pushCount = 0;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -31,25 +33,37 @@ class _BottomNaviationState extends State<PageFooterBar> {
 //
 //// Find the Scaffold in the widget tree and use it to show a SnackBar.
 //          Scaffold.of(context).showSnackBar(snackBar);
+//          while (pushCount >= 0) {
+//            Navigator.of(context).pop();
+//            print("LOOOOOP $pushCount");
+//            pushCount--;
+//          }
+//          pushCount++;
           switch (index) {
             case 0:
-              Navigator.push(
-                  context,
-                  new MaterialPageRoute(
-                      builder: (context) => new MovieListingPage()));
+              Navigator.pushNamedAndRemoveUntil(
+                  context, MovieListingPage.ROUTE, (r) => false);
+//              Navigator.push(
+//                  context,
+//                  new MaterialPageRoute(
+//                      builder: (context) => new MovieListingPage()));
               break;
             case 1:
-              Navigator.push(
-                  context,
-                  new MaterialPageRoute(
-                      builder: (context) => new SearchList()));
+              Navigator.pushNamedAndRemoveUntil(
+                  context, SearchList.ROUTE, (r) => false);
+//              Navigator.push(
+//                  context,
+//                  new MaterialPageRoute(
+//                      builder: (context) => new SearchList()));
 //              Scaffold.of(context).openEndDrawer();
               break;
             case 2:
-              Navigator.push(
-                  context,
-                  new MaterialPageRoute(
-                      builder: (context) => new MovieContribute()));
+              Navigator.pushNamedAndRemoveUntil(
+                  context, MovieContribute.ROUTE, (r) => false);
+//              Navigator.push(
+//                  context,
+//                  new MaterialPageRoute(
+//                      builder: (context) => new MovieContribute()));
               break;
           }
         },

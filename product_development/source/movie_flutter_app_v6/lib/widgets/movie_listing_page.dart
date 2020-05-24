@@ -67,7 +67,7 @@ class _MyHomePageState extends State<MovieListingPage> {
 
   @override
   Widget build(BuildContext context) {
-    print("Build UI $_movies");
+//    print("Build UI $_movies");
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
     if (isError) {
       return Scaffold(
