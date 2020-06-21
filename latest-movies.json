@@ -8,6 +8,19 @@
    },
  {
       "albumId":1,
+      "id":31,
+      "title":"Android Kunjappan Ver 5.25",
+      "url":"https://www.dailymotion.com/embed/video/x7pd7cu",
+       "urlList":[
+             "https://www.dailymotion.com/embed/video/x7pd7cu",
+             "https://www.dailymotion.com/embed/video/x7pd2in",
+             "https://www.dailymotion.com/embed/video/x7pd2io"
+       ],
+      "thumbnailUrl":"https://m.media-amazon.com/images/M/MV5BMzI2ZDJjYTYtNTI0MC00ZTY1LWJkNzYtMmU2OTk1MWJhYzQzXkEyXkFqcGdeQXVyMjkxNzQ1NDI@._V1_UY1200_CR87,0,630,1200_AL_.jpg",
+      "imdbRating":"8.3"
+   },
+ {
+      "albumId":1,
       "id":30,
       "title":"Anveshanam",
       "url":"https://www.youtube.com/watch?v=UdegEZ6z1Ss",
