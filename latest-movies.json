@@ -74,6 +74,14 @@
       "thumbnailUrl":"https://upload.wikimedia.org/wikipedia/en/0/00/Comrade_in_America.jpg",
       "imdbRating":"6.5"
    },
+ {
+      "albumId":1,
+      "id":22,
+      "title":"Ennu Ninte Moideen",
+      "url":"https://www.youtube.com/watch?v=72qUSy_u1jw",
+      "thumbnailUrl":"https://upload.wikimedia.org/wikipedia/en/thumb/a/a5/Ennu-ninte-moideen.jpg/220px-Ennu-ninte-moideen.jpg",
+      "imdbRating":"8.0"
+   },
    {
       "albumId":1,
       "id":28,
